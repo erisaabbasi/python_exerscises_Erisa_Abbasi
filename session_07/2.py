@@ -1,11 +1,17 @@
-def process_order(customer,*products,**options):
-    results = {"costomer":"","products":[],"discount":0,"tax":0,"shipping":0,"final_price":0}
-    results["costomer"] = customer
-    results["products"] = products
-    results["discount"] = options.get("discount",0)
-    results["shipping"] = options["shipping"]
-    results["tax"] = options.get("tax",0)
-    return results
+def process_order(customer, *products, discount = 0, tax = 0, shipping = 0, options):
+    # قیمت فرضی است
+    base_price = len(products) * 10000
+    price_after_discount = base_price - (base_price * discount / 100)
+    price_after_tax = price_after_discount + (price_after_discount * tax / 100)
+    final_price = price_after_tax + shipping
+    return {
+        "customer": customer,
+        "products": list(products),
+        "discount": discount,
+        "tax": tax,
+        "shipping": shipping,
+        "final_price": final_price,
+    }
 
 
 print(process_order(
