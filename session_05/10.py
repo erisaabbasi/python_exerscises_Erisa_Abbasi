@@ -1,4 +1,4 @@
-s1 = input("sentence 1: ")
+s1 = input("sentence users: ")
 s2 = input("sentence 2: ")
 word1 = set(s1.split())
 word2 = set(s2.split())
